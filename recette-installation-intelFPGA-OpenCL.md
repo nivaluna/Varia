@@ -27,7 +27,7 @@ Sur la page de téléchargement se trouvent des instruction détaillées. Il s'a
 
 ### Root ou utilisateur
 
-Attention l'installateur peut vous suggérer d'exécuter (commande pour l'example) :
+Attention l'installateur peut vous suggérer d'exécuter (commande pour l'exemple) :
 
 ```bash
 user@computer:~/Downloads/AOCL-pro-18.1.0.222-linux$ sudo ./setup_pro.sh 
