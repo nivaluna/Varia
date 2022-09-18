@@ -1,5 +1,5 @@
  
-# Recette d'installation d'intelFPGA SDK for OpenCL sur linux
+# Recette d'installation d'intelFPGA SDK for OpenCL sur Linux
 
 Les guides d'installation officiels sont nommés Getting Started et fournis par intel, en l'occurrence on veut les guides pour SDK, attention à la version des guides proposés.
 
