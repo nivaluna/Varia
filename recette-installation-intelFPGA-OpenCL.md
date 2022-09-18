@@ -101,14 +101,14 @@ est bien définie et renvoie la version attendue. Si ça n'est pas le cas, revoi
 
 Télécharger un exemple depuis le site Intel, par exemple Hello World compatible avec Quartus version 17.1 ou ultérieures, pour Linux puisque nous allons émuler sur une machine hôte Linux. Installations préalables : gcc, g++ et make, il peut être nécessaire de les installer/réinstaller manuellement. Il faut faire pointer la variable AOCL_BOARD_PACKAGE_ROOT sur le dossier du BSP de la carte intel utilisée, j'ai utilisé le BSP suivant correspondant à l'arria 10 : $INTELFPGAOCLSDKROOT/board/a10_ref.
 
-Notons que des exemples existent pour hôte linux, windows (avec une configuration pour Microsoft Visual Studio) et pour une carte avec arm, ce qui donnent de très bonnes référeneces, notamment avec linux et arm qui ont des makefile lisibles.
+Notons que des exemples existent pour hôte Linux, Windows (avec une configuration pour Microsoft Visual Studio) et pour une carte avec Arm, ce qui donne de très bonnes référeneces, notamment avec Linux et Arm qui ont des makefile lisibles.
 
 Ce qu'on espère :
-- on compile le host grâce au makefile fourni (commande make a l'endroit du makefile)
+- on compile le host grâce au makefile fourni (commande make à l'endroit du makefile)
 - on compile le device pour l'émulation (commande fournie plus loin)
-- s'ils ne sont pas dans le même dossier on les déplace et on lance le host (commande indiquée plus loin) pour une compilation parfait
+- s'ils ne sont pas dans le même dossier <<<pas compris: quoi n'est pas dans le même dossier?>>>, on les déplace et on lance le host (commande indiquée plus loin) pour une compilation parfaite
 
-Ca n'arrivera probablement pas, çc n'est pas grave.
+Ca n'arrivera probablement pas, çc n'est pas grave.<<< ??? >>>
 
 ### Méthode pour compiler le projet
 
@@ -125,7 +125,7 @@ user@computer:~/Downloads/exm_opencl_hello_world_x64_linux/hello_world$ aoc -mar
 ```
 ou -v et -report donnent de l'information et -o renomme : il est important de donner à l'exécutable le nom attendu par le host sans quoi il ne le trouvera pas
 
-Enfin, comme suggéré par le compilateur du device il faudra exécuter le host avec la commande suivante (ou depuis n'importe quel dossier où se trouvent le host et l'aocx):
+Enfin, comme suggéré par le compilateur du device, il faudra exécuter le host avec la commande suivante (ou depuis n'importe quel dossier où se trouvent le host et l'aocx):
 ```bash
 user@computer:~/Downloads/exm_opencl_hello_world_x64_linux/hello_world/bin$ env CL_CONTEXT_EMULATOR_DEVICE_INTELFPGA=1 ./host
 ```
