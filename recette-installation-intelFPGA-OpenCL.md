@@ -148,24 +148,25 @@ Si au lieu d'un bibliothèque .so l'erreur concerne qqch de la forme -lref il s'
 
 #### _Déterminer la bonne bibliothèque_
 
-Déjà, si la bibliothèque **n'existe pas** c'est problématique. Il faut aller rechercher de quelle façon on l'installe proprement, ces cas sont assez bien documentés. Il m'a fallu installer libpng12-0, libstdc++5 et libncurses5 (avec sudo apt-get install). Cela a toutes les chances de résoudre le problème directement pour la bibliothèque en question, sinon on peut faire un updatedb puis recommencer locate et poursuivre sur les cas suivants.
+Si la bibliothèque **n'existe pas**, c'est problématique. Il faut aller rechercher de quelle façon on l'installe proprement, ces cas sont assez bien documentés. Il m'a fallu installer libpng12-0, libstdc++5 et libncurses5 (avec sudo apt-get install). Cela a toutes les chances de résoudre le problème directement pour la bibliothèque en question, sinon on peut faire un updatedb puis recommencer locate et poursuivre sur les cas suivants.
 
 Si une bibliothèque existe pour une **autre architecture** (typiquement avec "arm" dans le son chemin) on la traitera comme hors sujet, d'ailleurs il se peut qu'un warning affiche "skipping incompatible" en la mentionnant.
 
 Si la bibliothèque existe en **plusieurs versions**, on privilegiera celle avec le nom de version le plus court, il est possible qu'elle soit un lien symbolique vers la version précise du moment (qui porte un nom plus long).
 
-Si la bibliothèque existe à **plusieurs endroits**, on privilégiera l'endroit qui semble le plus générique, en aucun cas un lié à un logiciel propriétaire qui n'a rien à voir, gcc est acceptable, intelFPGA/Altera en second lieu. Il peut etre rassurant de comparer deux fichiers en cas de doute (diff [fichier 1] [fichier 2]), s'ils sont bien identiques on ne craint rien à choisir l'un ou l'autre, si ça n'est pas le cas il est important de repérer lequel est adéquat sachant que l'hôte est la machine linux et ses bibliothèques devraient être les bonnes.
+Si la bibliothèque existe à **plusieurs endroits**, on privilégiera l'endroit qui semble le plus générique, en aucun cas un lié à un logiciel propriétaire qui n'a rien à voir, gcc est acceptable, intelFPGA/Altera en second lieu. Il peut être rassurant de comparer deux fichiers en cas de doute (diff [fichier 1] [fichier 2]), s'ils sont bien identiques on ne craint rien à choisir l'un ou l'autre, si ça n'est pas le cas il est important de repérer lequel est adéquat sachant que l'hôte est la machine linux et ses bibliothèques devraient être les bonnes.
 
 #### _Indiquer au linker comment trouver la bibliothèque_
+La variable d'environnement LD_LIBRARY_PATH permet d'ajouter pour ld des chemins où chercher ses bilbiothèques. On peut essayer, ceci dit de mon expérience cela n'a pas fonctionné une seule fois.
 
-Il me semble que LD_LIBRARY_PATH est destiné à ajouter pour ld des chemins où chercher ses bilbiothèques. On peut essayer, ceci dit de mon expérience cela n'a pas fonctionné une seule fois.
-
-Une autre option probablement élégante que je n'ai pas vraiment utilisée mais que j'aurais envie de recommander à l'avenir est de configurer le path de ld avec son fichier de configuration. D'abord on peut afficher le chemin que parcourt ld avec la commande suivante :
+Une autre option probablement élégante que je n'ai pas vraiment utilisée mais que j'aurais envie de recommander à l'avenir est de configurer le path de ld  <<<ce n'est pas le path: le path, c'est où on cherche les exécutables>>> avec son fichier de configuration. D'abord on peut afficher le chemin que parcourt ld avec la commande suivante :
 ```bash
 ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
 ```
 Pour lui ajouter des chemins on peut simplement ajouter un dossier par ligne dans le fichier dédié /etc/ld.so.conf (par exemple en l'ouvrant avec sudo gedit /etc/ld.so.conf). Ensuite on mettra à jour les chemins avec ldconfig.
 **Attention** cependant, l'ennui de cette méthode est que si plusieurs fichiers portent le même nom il faudra en remplacer un avec un lien symbolique, il faut donc être prudent avec ce que l'on fait, ne surtout pas effacer de fichier uniques et faire les liens dans le bon sens. C'est probablement la méthode la plus propre mais il faut savoir ce que l'on fait.
+ 
+<<<je n'ai pas compris ce qui precede: je pense qu'il faut ajouter des lignes dans /etc/ld.so.conf ou plutot ajouter des fichiers dans /etc/ld.so.conf.d/ et je n'ai pas bien compris pourquoi cela exige qu'on fasse d'abord ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012 >>>
 
 Méthode fastidieuse mais facile : créer des liens symboliques entre la bibliothèque que l'on a identifiée comme adéquate et ce que cherche ld à un endroit où il cherche. Attention aux noms, je ne pense pas (à vérifier ceci dit) que ld accepterait bib.so.0.1 lorsqu'il cherche bib.so. Pour l'endroit où créer le lien symbolique, à votre convenance parmi les endroits ou ld cherche. On pourrait même créer un dossier exprès, le rajouter à son .conf et directement copier les bibliothèques. Ce que je précaunise c'est de créer des liens symboliques vers /usr/lib. Cela se fait avec la commande ln -s [bibliotheque] [lien à créer]. Voici certains liens que vous aurez probablement à créer, attention ils peuvent être légèrement ou tout à fait differents :
 
