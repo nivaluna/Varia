@@ -79,15 +79,15 @@ Deux points sont à noter. Premièrement, sous ```sh``` ou sous ```bash```, il f
 
 _A ne pas faire_ : il n'est pas recommandé de simplement taper les commandes changeant les variables d'environnement dans un terminal. Les définitions de variables entrées de cette façon ne valent en effet que pour la seule instance en cours du shell (et pour ses descendants - ce qui a peu d'importance pratique), et ne survivent pas au reboot.
 
-### License
+### Licence
 
-Ne pas oublier de mettre la licence à l'endroit indiqué par LM_LICENSE_FILE (chemin complet incluant le fichier, contrairement à la plupart des variables d'environnement indiquant des dossiers). Si on utilise une clef usb qui pourra prendre une autre adresse mac, on va changer cette adresse vers celle pour laquelle est faite la licence. Pour cela, avec ifconfig, on repère le nom de l'interface de la clef (pour l'exemple ce sera wlx200db024752e) ainsi que l'adresse mac de la license (ici 001583ED8A53) et on pourra écrire ces deux commandes après les installations indiquées éventuelles :
+Ne pas oublier de mettre la licence à l'endroit indiqué par LM_LICENSE_FILE (chemin complet incluant le fichier, contrairement à la plupart des variables d'environnement indiquant des dossiers) (attention à l'orthographe américaine: il y a un S à la place d'un C). Si on utilise une clef usb qui pourra changer d'adresse mac, on va changer cette adresse vers celle pour laquelle est faite la licence. Pour cela, avec ifconfig, on repère le nom de l'interface de la clef (pour l'exemple ce sera wlx200db024752e) ainsi que l'adresse mac de la license (ici 001583ED8A53) et on pourra écrire ces deux commandes après les installations indiquées éventuelles :
 ```bash
 sudo ifconfig wlx200db024752e down
 sudo macchanger -m 00:15:83:ED:8A:53 wlx200db024752e
 ```
 
-## Etape 4 : Tester l'émulation sur carte intel
+## Etape 4 : Tester l'émulation sur carte Intel
 
 On part du principe qu'il n'y a besoin ni de BSP spécifique ni de l'EDS qui permet la cross-compilation, déjà c'est le test de l'installation la plus basique.
 
