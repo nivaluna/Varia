@@ -54,9 +54,9 @@ user@computer:~/Downloads/AOCL-pro-18.1.0.222-linux/components$ ./QuartusProSetu
 
 L'ordre est (je crois) important : dans le doute **commencer par Quartus** puisque les autres composants s'appuient dessus. Pour un AOCL (alias d'Altera OpenCL, ancien nom) fonctionnel on installera Quartus, tout ce qui porte le nom AOCL, SDK ou d'autres variantes éventuelles d'OpenCL ainsi que le BSP, j'ignore si ce dernier est utile lorsque l'on utilise un BSP qui ne provient pas d'Intel (comme la de1soc) mais ce sera nécessaire dans le cas de l'arria 10, la cyclone V etc.
 
-De la même façon que précédemment, à l'installation, **Quartus va freeze**. Ca n'est pas grave. Il va d'abord finir de tout installer puis simplement échouer à s'arrêter. Il est très important de le laisser finir réellement, c'est difficile d'être certain qu'il a fini, il fait parfois apparaître une fenêtre supplémentaire qu'il refermera, vers la fin et il peut ne pas progresser un certain temps sans avoir réellement terminé. Dans le doute, laissez-lui 20mn supplémentaires à partir du moment où il semble ne plus rien faire de nouveau.
+De la même façon que précédemment, à l'installation, **Quartus va freeze**. Ce n'est pas grave. Il va d'abord finir de tout installer puis simplement ne va pas s'arrêter. Il est très important de le laisser finir réellement, c'est difficile d'être certain qu'il a fini, il fait parfois apparaître une fenêtre supplémentaire qu'il refermera, vers la fin. Il peut ne pas progresser un certain temps sans avoir réellement terminé. Dans le doute, laissez-lui 20 min supplémentaires à partir du moment où il semble ne plus rien faire de nouveau.
 
-Ensuite on n'annule rien, il me semble qu'alors il efface l'installation. On le tue de force par sa méthode préférée. Je suggère un :
+Ensuite on n'annule rien, il me semble qu'alors il efface l'installation. On le tue de force, je suggère la commande suivante :
 ```bash
 anywhere$ kill -9 [process id]
 ```
