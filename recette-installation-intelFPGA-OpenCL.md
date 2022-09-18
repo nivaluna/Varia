@@ -99,7 +99,7 @@ est bien définie et renvoie la version attendue. Si ça n'est pas le cas, revoi
 
 ### Se préparer au test
 
-Télécharger un exemple depuis le site intel, par exemple Hello World compatible avec Quartus version 17.1 ou ultérieures, pour linux puisque nous allons émuler sur une machine hôte linux. Installations préalables : gcc, g++ et make, il peut être nécessaire de les installer/réinstaller manuellement. Il faut faire pointer la variable AOCL_BOARD_PACKAGE_ROOT sur le dossier du BSP de la carte intel utilisée, j'ai utilisé le BSP suivant correspondant à l'arria 10 : $INTELFPGAOCLSDKROOT/board/a10_ref.
+Télécharger un exemple depuis le site Intel, par exemple Hello World compatible avec Quartus version 17.1 ou ultérieures, pour Linux puisque nous allons émuler sur une machine hôte Linux. Installations préalables : gcc, g++ et make, il peut être nécessaire de les installer/réinstaller manuellement. Il faut faire pointer la variable AOCL_BOARD_PACKAGE_ROOT sur le dossier du BSP de la carte intel utilisée, j'ai utilisé le BSP suivant correspondant à l'arria 10 : $INTELFPGAOCLSDKROOT/board/a10_ref.
 
 Notons que des exemples existent pour hôte linux, windows (avec une configuration pour Microsoft Visual Studio) et pour une carte avec arm, ce qui donnent de très bonnes référeneces, notamment avec linux et arm qui ont des makefile lisibles.
 
@@ -108,7 +108,7 @@ Ce qu'on espère :
 - on compile le device pour l'émulation (commande fournie plus loin)
 - s'ils ne sont pas dans le même dossier on les déplace et on lance le host (commande indiquée plus loin) pour une compilation parfait
 
-Ca n'arrivera probablement pas, ça n'est pas grave.
+Ca n'arrivera probablement pas, çc n'est pas grave.
 
 ### Méthode pour compiler le projet
 
