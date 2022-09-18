@@ -1,7 +1,7 @@
  
-# Recette d'installation d'intelFPGA SDK for OpenCL sur linux
+# Recette d'installation d'IntelFPGA SDK for OpenCL sur Linux
 
-Les guides d'installation officiels sont nommés Getting Started et fournis par intel, en l'occurrence on veut les guides pour SDK, attention à la version des guides proposés.
+Les guides d'installation officiels sont nommés Getting Started et fournis par Intel, en l'occurrence on veut les guides pour SDK, attention à la version des guides proposés.
 
 https://www.intel.com/content/www/us/en/docs/programmable/683188/22-2/pro-edition-getting-started-guide.html
 
@@ -9,7 +9,7 @@ Attention à choisir sa version.
 
 ## Etape 1 : Télécharger l'installateur
 
-On le trouve sur le **site d'intel**. On peut utiliser au choix l'installateur de **Quartus ou** celui du **SDK**. OpenCL s'appuie sur Quartus mais dans les deux cas l'installation commencera par quartus en fonction des options qui seront cochées, sachant que Quartus contient non seulement OpenCL mais aussi Modelsim, que ne contient pas SDK.
+On le trouve sur le **site d'Intel**. On peut utiliser au choix l'installateur de **Quartus ou** celui du **SDK**. OpenCL s'appuie sur Quartus mais dans les deux cas l'installation commencera par quartus en fonction des options qui seront cochées, sachant que Quartus contient non seulement OpenCL mais aussi Modelsim, que ne contient pas SDK.
 
 ### Choix de version
 
@@ -17,7 +17,7 @@ Les versions testées sont 18.1 standard pour compilation sur une carte de1soc a
 
 ### Téléchargement
 
-S'assurer de la version de Quartus ou SDK choisie : version, pro ou standard et surtout distribution, certaines pages offrent windows dans un premier tab même après avoir cliqué sur une page pour linux.
+S'assurer de la version de Quartus ou SDK choisie : version, pro ou standard et surtout distribution, certaines pages offrent windows dans un premier tab même après avoir cliqué sur une page pour Linux.
 
 ## Etape 2 : Installation
 
@@ -40,7 +40,7 @@ user@computer:~/Downloads/AOCL-pro-18.1.0.222-linux$ ./setup_pro.sh
 
 ### En cas de freeze
 
-C'était le cas pour toutes les installations de **version 17.1** sous linux essayées et cela pourrait être le cas pour d'autres versions notamment antérieures. Un sous-programme de l'installation ne parvient pas a quitter. Cela n'est pas une erreur fatale. J'ignore exactement où s'arrête l'installateur dans ce cas et ma recommandation est alors d'effacer l'installation complètement (ou de venir directement à cette étape) pour la faire proprement :
+C'était le cas pour toutes les installations de **version 17.1** sous Linux essayées et cela pourrait être le cas pour d'autres versions notamment antérieures. Un sous-programme de l'installation ne parvient pas a quitter. Cela n'est pas une erreur fatale. J'ignore exactement où s'arrête l'installateur dans ce cas et ma recommandation est alors d'effacer l'installation complètement (ou de venir directement à cette étape) pour la faire proprement :
 
 ```bash
 exemple-selon-dossier-d-installation-attention-avec-cette-commande$ rm -rf ~/intelFPGA_pro 
@@ -52,7 +52,7 @@ Ensuite il va s'agit de faire l'**installation des composants** individuellement
 user@computer:~/Downloads/AOCL-pro-18.1.0.222-linux/components$ ./QuartusProSetup-18.1.0.222-linux.run 
 ```
 
-L'ordre est (je crois) important : dans le doute **commencer par Quartus** puisque les autres composants s'appuient dessus. Pour un AOCL (alias d'Altera OpenCL, ancien nom) fonctionnel on installera Quartus, tout ce qui porte le nom AOCL, SDK ou d'autres variantes éventuelles d'OpenCL ainsi que le BSP, j'ignore si ce dernier est utile lorsque l'on utilise un BSP qui ne provient pas d'intel (comme la de1soc) mais ce sera nécessaire dans le cas de l'arria 10, la cyclone V etc.
+L'ordre est (je crois) important : dans le doute **commencer par Quartus** puisque les autres composants s'appuient dessus. Pour un AOCL (alias d'Altera OpenCL, ancien nom) fonctionnel on installera Quartus, tout ce qui porte le nom AOCL, SDK ou d'autres variantes éventuelles d'OpenCL ainsi que le BSP, j'ignore si ce dernier est utile lorsque l'on utilise un BSP qui ne provient pas d'Intel (comme la de1soc) mais ce sera nécessaire dans le cas de l'arria 10, la cyclone V etc.
 
 De la même façon que précédemment, à l'installation, **Quartus va freeze**. Ca n'est pas grave. Il va d'abord finir de tout installer puis simplement échouer à s'arrêter. Il est très important de le laisser finir réellement, c'est difficile d'être certain qu'il a fini, il fait parfois apparaître une fenêtre supplémentaire qu'il refermera, vers la fin et il peut ne pas progresser un certain temps sans avoir réellement terminé. Dans le doute, laissez-lui 20mn supplémentaires à partir du moment où il semble ne plus rien faire de nouveau.
 
@@ -70,7 +70,7 @@ Si d'autres composants décident de freeze on procédera de même.
 
 ## Etape 3 : Variables d'environnement
 
-Les variables d'environnement sont correctement décrites dans les guides d'installation fournis par intel. Je joins deux fichiers fonctionnels pour mes installations de Quartus 17.1 pro et 18.1 pro. Essentiellement je considère que 2 méthodes sont à considérer pour les définir.
+Les variables d'environnement sont correctement décrites dans les guides d'installation fournis par Intel. Je joins deux fichiers fonctionnels pour mes installations de Quartus 17.1 pro et 18.1 pro. Essentiellement je considère que 2 méthodes sont à considérer pour les définir.
 - si on utilise une seule version d'opencl (ou une de façon très préférentielle), dans un seul type de terminal et pour un seul utilisateur, c'est plus simple de l'inscrire directement dans le fichier de configuration du terminal en question (pour bash c'est le bashrc que l'on trouve normalement sous ~/.bashrc)
 - si on préfère ne pas toucher à la configuration du terminal (peut-être est-ce une mauvaise pratique), changer régulièrement d'utilisateur, de version etc on peut préférer un fichier de configuration que l'on exécutera dans chaque nouveau terminal avant toute utilisation de fonctions opencl
 
