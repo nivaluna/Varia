@@ -125,14 +125,14 @@ user@computer:~/Downloads/exm_opencl_hello_world_x64_linux/hello_world$ aoc -mar
 ```
 ou -v et -report donnent de l'information et -o renomme : il est important de donner à l'exécutable le nom attendu par le host sans quoi il ne le trouvera pas
 
-Enfin, comme suggéré par le compilateur du device, il faudra exécuter le host avec la commande suivante (ou depuis n'importe quel dossier où se trouvent le host et l'aocx):
+Enfin, comme suggéré par le compilateur du device, il faudra exécuter le host avec la commande suivante (depuis n'importe quel dossier où se trouvent le host et l'aocx):
 ```bash
 user@computer:~/Downloads/exm_opencl_hello_world_x64_linux/hello_world/bin$ env CL_CONTEXT_EMULATOR_DEVICE_INTELFPGA=1 ./host
 ```
 
-### Problèmes de linker
+### Problèmes de l'éditeur de liens
 
-La plupart des problèmes viendront de bibliothèques que le linker ne parviendra pas à trouver. Le linker GNU se nomme ld ou et se trouve dans /usr/bin/ld et concerne beaucoup de distributions linux (si vous ne l'avez pas, vous êtes probablement assez calé pour adapter les solutions proposées). S'il est l'émetteur d'une erreur, ou qu'un linker est mentionné, c'est très probablement qu'il y a une bibliothèque que ld ne parvient pas à trouver. Cela peut prendre plusieurs formes, y compris pendant l'exécution du host et émanant du host (c'est un piège, sauf si vous repérez l'erreur en question dans le host ou dans ses includes, elle proviendra probablement de ld aussi).
+La plupart des problèmes viendront de bibliothèques que le linker (éditeur de liens) ne parviendra pas à trouver. Le linker GNU se nomme ld ou et se trouve dans /usr/bin/ld ; il est utilisé sur pratiquement toutes les distributions linux (si vous ne l'avez pas, vous êtes probablement assez calé pour adapter les solutions proposées). S'il produit une erreur ou s'il est mentionné dans une erreur, c'est très probablement qu'il y a une bibliothèque que ld ne parvient pas à trouver. Cela peut prendre plusieurs formes, y compris pendant l'exécution du host et émanant du host (c'est un piège, sauf si vous repérez l'erreur en question dans le host ou dans ses includes, elle proviendra probablement de ld aussi).
 
 A ce moment-là, il faut repérer où se trouve ladite bibliothèque et analyser la situation.
 
