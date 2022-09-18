@@ -97,7 +97,7 @@ anywhere$ aocl version
 ```
 est bien définie et renvoie la version attendue. Si ça n'est pas le cas, revoir les étapes précédentes et s'assurer que l'exécutable aocl est bien dans le PATH ainsi que INTELFPGAOCLSDKROOT renvoie bien au bon dossier d'installation (ALTERAOCLSDKROOT pour des versions plus anciennes, au moins jusqu'à la 14).
 
-### Se préparer au test
+### Préparer le test
 
 Télécharger un exemple depuis le site Intel, par exemple Hello World compatible avec Quartus version 17.1 ou ultérieures, pour Linux puisque nous allons émuler sur une machine hôte Linux. Installations préalables : gcc, g++ et make, il peut être nécessaire de les installer/réinstaller manuellement. Il faut faire pointer la variable AOCL_BOARD_PACKAGE_ROOT sur le dossier du BSP de la carte intel utilisée, j'ai utilisé le BSP suivant correspondant à l'arria 10 : $INTELFPGAOCLSDKROOT/board/a10_ref.
 
@@ -132,9 +132,9 @@ user@computer:~/Downloads/exm_opencl_hello_world_x64_linux/hello_world/bin$ env 
 
 ### Problèmes de l'éditeur de liens
 
-La plupart des problèmes viendront de bibliothèques que le linker (éditeur de liens) ne parviendra pas à trouver. Le linker GNU se nomme ld ou et se trouve dans /usr/bin/ld ; il est utilisé sur pratiquement toutes les distributions linux (si vous ne l'avez pas, vous êtes probablement assez calé pour adapter les solutions proposées). S'il produit une erreur ou s'il est mentionné dans une erreur, c'est très probablement qu'il y a une bibliothèque que ld ne parvient pas à trouver. Cela peut prendre plusieurs formes, y compris pendant l'exécution du host et émanant du host (c'est un piège, sauf si vous repérez l'erreur en question dans le host ou dans ses includes, elle proviendra probablement de ld aussi).
+La plupart des problèmes viendront de bibliothèques que le linker (éditeur de liens) ne parviendra pas à trouver. Le linker GNU se nomme ld et se trouve dans /usr/bin/ld ; il est utilisé sur pratiquement toutes les distributions Linux (si vous ne l'avez pas, vous êtes probablement assez calé pour adapter les solutions proposées). S'il produit une erreur ou s'il est mentionné dans une erreur, c'est très probablement qu'il y a une bibliothèque que ld ne parvient pas à trouver. Cela peut prendre plusieurs formes, y compris pendant l'exécution du host et émanant du host (c'est un piège, sauf si vous repérez l'erreur en question dans le host ou dans ses includes, elle proviendra probablement de ld aussi <<<pas compris le truc entre parentheses>>>).
 
-A ce moment-là, il faut repérer où se trouve ladite bibliothèque et analyser la situation.
+Il faut repérer où se trouve la bibliothèque en cause et analyser la situation.
 
 #### _Repérer une bibliothèque_
 
