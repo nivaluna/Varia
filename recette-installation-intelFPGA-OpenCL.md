@@ -75,12 +75,9 @@ Les variables d'environnement sont correctement décrites dans les guides d'inst
 ```bash
 user@computer:path-to-file$ source ./initCL
 ```
-Deux points sont à noter. Premièrement, que sous ```sh``` ou sous ```bash```, 'il faut bien utiliser la commande 
- 
- 
-Le bashrc ou equivalent est particulier parce qu'il est automatiquement invoqué à chaque création de nouveau shell bash (ce qui peut aussi se faire avec la commande bash) mais les mises à jour n'impacteront pas immédiatement les shells déjà ouverts.
+Deux points sont à noter. Premièrement, sous ```sh``` ou sous ```bash```, il faut bien utiliser la commande ```source``` pour exécuter le fichier de configuration, c'est la seule façon de l'exécuter qui permet aux définitions de variables d'environnement qu'il contient d'être integrées par le shell courant. Deuxièmement, si nous avons besoin tout le temps du même fichier de configuration (parce que nous utilisons tout le temps la même installation de Quartus), alors il est commode d'inclure la commande ```source ./initCL``` dans ```~/.bashrc``` (c'est le fichier d'initialisation que chaque instance de ```bash``` exécute automatiquement à son lancement).
 
-_A ne pas faire_ : simplement taper les commandes changeant les variables d'environnement dans un terminal. Déjà je suis presque sûre que cela ne concernera que le terminal utilisé, mais même si ça n'est pas le cas il faudrait recommencer au prochain reboot. Ca n'en vaut pas la peine.
+_A ne pas faire_ : il n'est pas recommandé de simplement taper les commandes changeant les variables d'environnement dans un terminal. Les définitions de variables entrées de cette façon ne valent en effet que pour la seule instance en cours du shell (et pour ses descendants - ce qui a peu d'importance pratique), et ne survivent pas au reboot.
 
 ### License
 
