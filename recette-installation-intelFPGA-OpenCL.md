@@ -70,15 +70,14 @@ Si d'autres composants décident de freeze on procédera de même.
 
 ## Etape 3 : Variables d'environnement
 
-Les variables d'environnement sont correctement décrites dans les guides d'installation fournis par intel. Je joins deux fichiers fonctionnels pour mes installations de Quartus 17.1 pro et 18.1 pro. Essentiellement je considère que 2 méthodes sont à considérer pour les définir.
-- si on utilise une seule version d'opencl (ou une de façon très préférentielle), dans un seul type de terminal et pour un seul utilisateur, c'est plus simple de l'inscrire directement dans le fichier de configuration du terminal en question (pour bash c'est le bashrc que l'on trouve normalement sous ~/.bashrc)
-- si on préfère ne pas toucher à la configuration du terminal (peut-être est-ce une mauvaise pratique), changer régulièrement d'utilisateur, de version etc on peut préférer un fichier de configuration que l'on exécutera dans chaque nouveau terminal avant toute utilisation de fonctions opencl
+Les variables d'environnement sont correctement décrites dans les guides d'installation fournis par Intel. Je joins deux fichiers fonctionnels pour mes installations de Quartus 17.1 pro et 18.1 pro. <<<ou sont ces fichiers?>>> Je suggère de définir les variables dans un fichier de configuration que l'on exécutera dans chaque nouveau shell avant toute utilisation de fonctions opencl, comme ceci :
 
-Que le fichier de configuration soit ~/.bashrc ou un initCL, il faudra l'invoquer après tout changement comme suit :
 ```bash
 user@computer:path-to-file$ source ./initCL
 ```
-
+Deux points sont à noter. Premièrement, que sous ```sh``` ou sous ```bash```, 'il faut bien utiliser la commande 
+ 
+ 
 Le bashrc ou equivalent est particulier parce qu'il est automatiquement invoqué à chaque création de nouveau shell bash (ce qui peut aussi se faire avec la commande bash) mais les mises à jour n'impacteront pas immédiatement les shells déjà ouverts.
 
 _A ne pas faire_ : simplement taper les commandes changeant les variables d'environnement dans un terminal. Déjà je suis presque sûre que cela ne concernera que le terminal utilisé, mais même si ça n'est pas le cas il faudrait recommencer au prochain reboot. Ca n'en vaut pas la peine.
