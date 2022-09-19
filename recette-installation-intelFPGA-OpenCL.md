@@ -179,7 +179,7 @@ sudo ln -s /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/crtendS.o
 sudo ln -s /home/eva/intelFPGA_pro/18.1/hld/board/a10_ref/linux64/lib/libaltera_a10_ref_mmd.so /usr/lib/libaltera_a10_ref_mmd.so
 sudo ln -s $INTELFPGAOCLSDKROOT/linux64/lib/dspba/linux64/libdsdk.so /usr/lib/libdsdk.so 
 ```
-(E beaucoup d'autres provenant du dernier dossier, je recommande de rajouter ce dossier au path de ld par son fichier de configuration, je n'ai pas eu de conflits pour lui et même si je ne peux pas exclure qu'il y ait des incompatibilités d'une version à l'autre, je recommanderais d'ajouter une ligne qui altère et mette à jour le chemin de ld dans le bashrc ou le initCL écrit précédemment pour rester cohérent avec la version, bien qu'il soit tout à fait possible d'ajouter la quinzaine de bibliothèques concernée à la main si l'on reste sur une seule version ou que l'on ne recontre pas d'incompatibilités entre des versions coexistentes.
+(Et beaucoup d'autres provenant du dernier dossier, je recommande de rajouter ce dossier au path de ld par son fichier de configuration, je n'ai pas eu de conflits pour lui et même si je ne peux pas exclure qu'il y ait des incompatibilités d'une version à l'autre, je recommanderais d'ajouter une ligne qui altère et mette à jour le chemin de ld dans le bashrc ou le initCL écrit précédemment pour rester cohérent avec la version, bien qu'il soit tout à fait possible d'ajouter la quinzaine de bibliothèques concernée à la main si l'on reste sur une seule version ou que l'on ne recontre pas d'incompatibilités entre des versions coexistentes.) <<les remarques et l'exemple qui precedent sont crades; on peut travailler comme ça, mais à condition d'avoir honte.>>>
 
 _A ne pas faire_ : éviter de se fatiguer avec des options pour les commandes aoc, elles ne permettent pas d'ajouter des dossiers au path de ld.
 
@@ -192,19 +192,19 @@ INC_DIRS := ../common/inc /home/eva/intelFPGA/18.1/hld/host/include/CL
 
 ### Problèmes d'exécutables introuvables
 
-Les exécutables ne sont pas recherhés par le linker ld, c'est un problème distinct. Si autre chose qu'une librairie ou qu'un fichier .h pose problème, il y a fort à parier que ce sera un exécutable (généralement sans aucune extension à son nom). Dans mon cas, aocl-clang était introuvable.
+Les exécutables ne sont pas recherchés par le linker ld, c'est un problème distinct. Si autre chose qu'une librairie ou qu'un fichier .h pose problème, il est probable que ce sera un exécutable (généralement sans aucune extension à son nom). Dans mon cas, aocl-clang était introuvable.
 
-La solution est encore de repérer l'exécutable par son nom avec locate. Ensuite, on ajoute le dossier où il est à la variable d'environnement PATH, qui indique où chercher les exécutables à l'échelle du système. Comme précédemment, ça n'est pas la peine de le faire dans le terminal puisque ça ne résoudrait le problème que le temps de la session. On le fera soit dans le ~/.bashrc directement (ce que je recommande) soit éventuellement dans le fichier d'initialisation spécifique et rédigé plus tôt.
+La solution est encore de repérer l'exécutable par son nom avec locate. Ensuite, on ajoute le dossier où il est à la fin de la variable d'environnement PATH, qui indique où chercher les exécutables. Il est recommandé de faire cela dans le fichier d'initialisation des variables d'environnement mentionné plus haut (chapitre _Etape 3 : Variables d'environnement).
 
-### Corriger un message d'erreur après l'autre jusqu'à-ce qu'il n'y en ait plus
+### Corriger un message d'erreur après l'autre jusqu'à ce qu'il n'y en ait plus
 
-Normalement ces méthodes devraient venir à bout de tous les problèmes rencontrés et l'exécution du host donnera un beau message disant que tout s'est déroulé comme prévu.
+Normalement les méthodes ci-dessus devraient venir à bout de tous les problèmes rencontrés et l'exécution du host donnera un beau message disant que tout s'est déroulé comme prévu.
 
 ## Etape 5 optionnelle : compiler sur une carte physique
 
-Il s'agira alors d'installer l'EDS (Embedded Software and Tools) d'intel. L'installation devrait se passer sans heurts sauf à la dernière étape, pour l'installation du ds5. Lorsque l'installateur précaunise de reprendre avec sudo j'ignore si c'est vraiment utile mais il peut y avoir des problèmes intrinsèquement liés au nommage : j'inclus la petite note que j'avais écrite pour éviter les ennuis :
+Il s'agira alors d'installer l'EDS (Embedded Software and Tools) d'Intel. L'installation devrait se passer sans heurts sauf à la dernière étape, pour l'installation du ds5. Lorsque l'installateur préconise de reprendre avec sudo, j'ignore si c'est vraiment utile, mais il peut y avoir des problèmes intrinsèquement liés au nommage : j'inclus la petite note que j'avais écrite pour éviter les ennuis :
 
- install ds5 from []/intelFPGA/[version]/embedded/ds5-installer with prompt
+ install ds5 from []/intelFPGA/[version]/embedded/ds5-installer with prompt <<<comprends pas cette ligne>>>
  ```bash
     sudo ./install.sh [sth]/embedded/ds-5
 ```
@@ -230,7 +230,7 @@ should work directly if not the path can be specified by using
 
 Tout comme avec l'émulation, on peut télécharger un exemple sur le site (cette fois un exemple pour arm) et le tester, cette fois-ci il faut omettre l'option -march=emulator dans la compilation du device, transférer le host et le .aocx sur la cible (toujours dans le même fichier) et exécuter le host directement après lui avoir donné des droits d'exécution.
 
-### Etape 6 optionnelle : compiler ou émuler sur une carte non-intel
+### Etape 6 optionnelle : compiler ou émuler sur une carte non-Intel
 
 Il faut récupérer le BSP ainsi que les instructions du fournisseur. Dans le cas de la de1soc on peut trouver le BSP et le manuel sur cette même page : https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=165&No=836&PartNo=4#contents
 
